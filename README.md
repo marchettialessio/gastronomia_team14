@@ -2,6 +2,7 @@ idea:
   -fare un videogioco text-game che simuli un negozio di gastronomia
   -cosa deve fare il player: arrivare a un tot di soldi guadagnati (dispongo di un capitale iniziale)
   -se finisci gli schei hai perso (sei un mona)(è quasi impossibile)
+  -si ha ad esempiio 100 di vita, ogni ordine che passa più di certo tempo scade esi perde vita
   -altra possibile modalità di sconfitta: troppi clienti accumulati 
   -come vengono guadagnati i soldi: estinguendo degli ordini, ovvero piatti alimentari ordinati da clienti
   -per preparare i piatti bisogna possedere una lista di ingredienti:
