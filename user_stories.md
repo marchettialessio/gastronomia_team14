@@ -1,3 +1,6 @@
+https://www.productheroes.it/cosa-sono-user-story/
+https://www.appvizer.it/rivista/organizzazione/project-management/user-story
+
 1) Come giocatore voglio poter vedere il mio bilancio per capire i progressi
    -è possibile visualizzare il bilancio all'interno del negozio
    -è possibile visualizzare il bilancio al momento di un acquisto
