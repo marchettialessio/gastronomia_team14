@@ -1,5 +1,5 @@
-```plantuml
-@startuml
+
+@startuml prova
 
 left to right direction
 object Giocatore
@@ -60,4 +60,4 @@ Reset "1" -right-> "1" Gioco : Modifica
 Undo "1" --> "1" Gioco : Modifica
 
 @enduml
-```
+
