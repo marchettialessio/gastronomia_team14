@@ -1,4 +1,6 @@
+```plantuml
 @startuml
+
 left to right direction
 object Giocatore
 object Configurazione
@@ -56,4 +58,6 @@ ContatoreMosse "1" -down-* "1" Gioco : Contiene
 Reset "1" -right-> "1" Gioco : Modifica
 
 Undo "1" --> "1" Gioco : Modifica
+
 @enduml
+```
