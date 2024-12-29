@@ -1,17 +1,14 @@
-idea:
-  -fare un videogioco text-game che simuli un negozio di gastronomia
-  -cosa deve fare il player: arrivare a un tot di soldi guadagnati (dispongo di un capitale iniziale)
-  -se finisci gli schei hai perso (sei un mona)(è quasi impossibile)
-  -si ha ad esempiio 100 di vita, ogni ordine che passa più di certo tempo scade esi perde vita
-  -altra possibile modalità di sconfitta: troppi clienti accumulati 
-  -come vengono guadagnati i soldi: estinguendo degli ordini, ovvero piatti alimentari ordinati da clienti
-  -per preparare i piatti bisogna possedere una lista di ingredienti:
-      -vengono immagazzinati nel negozio
-      -per ricavare ingredienti mancanti bisonga comprarli dai negozi adiacenti
-      -è possibile trasportare solo una certa quantità di ingredienti per viaggio
-  -i clienti vengono generati casualmente ogni tot. tempo e anche la ricetta a loro collegata viene scelta casualmente da una       lista.
-  -tutti i negozi in cui comprare sono vicini e dentro a un centro commenciale
-  -quando si riceve un ordine:
-      -se si dispone di tutti gli ingredienti si può completare la ricetta, incassare i soldi e scalare gli ingredienti dal mag.
-      -se non si dispone degli ingredienti non si può completare l'ordine => devono essere comprati
-  
+idea
+  -implementare un videogioco text-game che simuli una rapina in un museo
+  -cosa deve fare il player: arrivare a un tot di soldi rubati (in valore di opere d'arte)
+  -(provvisorio) la vita scende col passare del tempo
+  -i soldi vengono guadagnati rubando in diverse stanze, ognuna con un tema diverso:
+      Locations: 
+      Sala del Rinascimento => Gioconda - Creazione di Adamo - Sacrificio di Isacco di Brunelleschi.
+      Galleria dell’Impressionismo => Le Ballerine - Impressione, levar del sole 
+      Sculture classiche => Busto di Cesare Augusto - Afrodite di Milo - Discobolo
+      Sala dell’arte moderna => Persistenza della memoria - Composizione in rosso blu e giallo 
+      Sezione degli artefatti culturali => Busto di Nefertiti - Ceramiche della dinastia Tang
+      Sala della natura morta => Canestra di frutta - Natura morta con teschio
+  -il tipo di opera d'arte determina come possono essere rubati; serviranno degli oggetti specifici che possono essere trovati in giro per il museo
+  -il player avvicinandosi all'ingresso del museo per consegnare le opere d'arte gia rubate
