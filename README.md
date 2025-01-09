@@ -11,4 +11,4 @@ idea
       Sezione degli artefatti culturali => Busto di Nefertiti - Ceramiche della dinastia Tang
       Sala della natura morta => Canestra di frutta - Natura morta con teschio
   -il tipo di opera d'arte determina come possono essere rubati; serviranno degli oggetti specifici che possono essere trovati in giro per il museo
-  -il player avvicinandosi all'ingresso del museo per consegnare le opere d'arte gia rubate
+  -il player deve avvicinandosi all'ingresso del museo per consegnare le opere d'arte gia rubate (per rispettare limite di peso)
