@@ -25,4 +25,9 @@
 (4. Come giocatore, voglio che la mia health bar diminuisca se resto nella stessa stanza della guardia troppo a lungo, così da essere motivato a scappare velocemente.
 Interazione con 
 
+(User Stories per la Guardia
+11. Come giocatore, voglio che la guardia si sposti in modo casuale tra le stanze, così da rendere il gioco imprevedibile.
+12. Come giocatore, voglio ricevere un messaggio di avviso se entro in una stanza con la guardia, così da poter scappare in tempo.
+13. Come giocatore, voglio che la mia health bar diminuisca gradualmente quando mi trovo nella stessa stanza della guardia, così da avere una penalità per non scappare.)
+
    
