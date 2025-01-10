@@ -16,18 +16,13 @@
 	-è possibile visualizzare il profitto momentaneo della rapina per vedere i miei progressi
 
 6) Come giocatore voglio poter vincere la partita
-   -la partita terminerà con una vittoria se si raggiungerà un determinato profitto
+	-la partita terminerà con una vittoria se si raggiungerà un determinato profitto
 
-
+7) Come giocatore, voglio vedere un timer che mi indichi quanto tempo rimane, così da sapere quanto tempo ho per raggiungere l'obiettivo.
+   	-il giocatore ha un tempo limite per poter raggiungere l'obbiettivo
    
-(3. Come giocatore, voglio vedere un timer che mi indichi quanto tempo rimane, così da sapere quanto tempo ho per raggiungere l'obiettivo.)
+8)  Come giocatore, voglio che la guardia si sposti in modo casuale tra le stanze
+   	-se il giocatore entra in una stanza in cui è presente una guardia e non scappa entro un limite temporale il suo timer verrà ridotto
 
-(4. Come giocatore, voglio che la mia health bar diminuisca se resto nella stessa stanza della guardia troppo a lungo, così da essere motivato a scappare velocemente.
-Interazione con 
-
-(User Stories per la Guardia
-11. Come giocatore, voglio che la guardia si sposti in modo casuale tra le stanze, così da rendere il gioco imprevedibile.
-12. Come giocatore, voglio ricevere un messaggio di avviso se entro in una stanza con la guardia, così da poter scappare in tempo.
-13. Come giocatore, voglio che la mia health bar diminuisca gradualmente quando mi trovo nella stessa stanza della guardia, così da avere una penalità per non scappare.)
 
    
