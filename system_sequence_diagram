@@ -62,5 +62,6 @@ alt current_profit >= winning_profit
 else current_profit < winning_profit
     System --> Player: showMargin(current_profit)
 end
+|||
 
 @enduml
