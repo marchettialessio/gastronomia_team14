@@ -1,0 +1,66 @@
+@startuml
+skinparam backgroundColor #f9f9f9
+skinparam participantBackgroundColor #e0f7fa
+skinparam participantBorderColor #00796b
+skinparam sequenceArrowColor #00796b
+skinparam sequenceBoxBackgroundColor #b2dfdb
+skinparam sequenceBoxBorderColor #004d40
+skinparam criticalBackgroundColor #ffcdd2
+skinparam criticalBorderColor #b71c1c
+skinparam altBackgroundColor #d1c4e9
+skinparam altBorderColor #512da8
+
+actor Player as "Player" 
+participant System
+|||
+
+== Save Game==
+Player -> System: save(current_game)
+critical "Save Operation"
+    alt Successful Operation
+        System --> Player: alert "Game successfully saved"
+    else Error
+        System --> Player: alert "An error has occurred"
+    end
+end
+|||
+
+== Load Game==
+Player -> System: load()
+critical "Load Operation"
+    alt Successful Operation
+        System --> Player: game_specifics
+        System --> Player: alert "Game successfully loaded"
+    else Error
+        System --> Player: alert "Load failed"
+    end
+end
+|||
+
+== Exit Game==
+Player -> System: exit()
+System --> Player: alert "Do you want to save the current game?"
+Player -> System: answer
+critical "Exit Operation"
+    alt answer = yes
+        alt Successful Operation
+            System --> Player: alert "Game successfully saved"
+        else Error
+            System --> Player: alert "Not saved, try again"
+        end
+    else answer = no
+        System --> Player: alert "You will lose all your progress"
+    end
+end
+|||
+
+== Empty Bag==
+Player -> System: empty(bag)
+System -> System: calculateCurrentProfit(bag)
+alt current_profit >= winning_profit
+    System --> Player: alert "You win"
+else current_profit < winning_profit
+    System --> Player: showMargin(current_profit)
+end
+
+@enduml
