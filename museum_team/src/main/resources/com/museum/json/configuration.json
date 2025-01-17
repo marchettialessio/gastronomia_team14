@@ -1,0 +1,230 @@
+[
+    {
+        "name": "Entrata",
+        "x_val": 1,
+        "y_val": 0,
+        "isEntry": true,
+        "allowedDirections": [
+            "right",
+            "bottom",
+            "left"
+        ],
+        "artworks_list": [],
+        "stealing_tool": ""
+    },
+    {
+        "name": "Sala del Rinascimento",
+        "x_val": 0,
+        "y_val": 1,
+        "isEntry": false,
+        "allowedDirections": [
+            "top",
+            "right",
+            "bottom"
+        ],
+        "artworks_list": [
+            {
+                "type": "Painting",
+                "name": "Gioconda",
+                "value": 3000000,
+                "weight": 3
+            },
+            {
+                "type": "Jewelry",
+                "name": "Anello di Lorenzo de Medici",
+                "value": 1500000,
+                "weight": 2
+            }
+        ],
+        "stealing_tool": ""
+    },
+    {
+        "name": "Galleria dell'impressionismo",
+        "x_val": 0,
+        "y_val": 2,
+        "isEntry": false,
+        "allowedDirections": [
+            "top",
+            "right"
+        ],
+        "artworks_list": [
+            {
+                "type": "Painting",
+                "name": "Impressionismo, levar del sole",
+                "value": 2000000,
+                "weight": 3
+            },
+            {
+                "type": "Sculpture",
+                "name": "Bimba che ride",
+                "value": 750000,
+                "weight": 4
+            }
+        ],
+        "stealing_tool": "LaserController"
+    },
+    {
+        "name": "Sculture classiche",
+        "x_val": 0,
+        "y_val": 3,
+        "isEntry": false,
+        "allowedDirections": [
+            "right"
+        ],
+        "artworks_list": [
+            {
+                "type": "Sculpture",
+                "name": "Busto di Cesare Augusto",
+                "value": 2500000,
+                "weight": 5
+            },
+            {
+                "type": "Sculpture",
+                "name": "Afrodite di Milo",
+                "value": 1250000,
+                "weight": 4
+            }
+        ],
+        "stealing_tool": "Knife"
+    },
+    {
+        "name": "Sala dell'arte moderna",
+        "x_val": 2,
+        "y_val": 1,
+        "isEntry": false,
+        "allowedDirections": [
+            "top",
+            "left"
+        ],
+        "artworks_list": [
+            {
+                "type": "Painting",
+                "name": "Persistenza della memoria",
+                "value": 2250000,
+                "weight": 3
+            },
+            {
+                "type": "Jewelry",
+                "name": "Orologio di Churchill",
+                "value": 500000,
+                "weight": 2
+            }
+        ],
+        "stealing_tool": ""
+    },
+    {
+        "name": "Sezione artefatti culturali",
+        "x_val": 2,
+        "y_val": 2,
+        "isEntry": false,
+        "allowedDirections": [
+            "bottom",
+            "left"
+        ],
+        "artworks_list": [
+            {
+                "type": "Sculpture",
+                "name": "Busto di nefertiti",
+                "value": 2000000,
+                "weight": 5
+            },
+            {
+                "type": "Sculpture",
+                "name": "Ceramiche dinastia Tang",
+                "value": 1500000,
+                "weight": 4
+            }
+        ],
+        "stealing_tool": ""
+    },
+    {
+        "name": "Natura morta",
+        "x_val": 2,
+        "y_val": 3,
+        "isEntry": false,
+        "allowedDirections": [
+            "top",
+            "left"
+        ],
+        "artworks_list": [
+            {
+                "type": "Painting",
+                "name": "Canestra di frutta",
+                "value": 2000000,
+                "weight": 3
+            },
+            {
+                "type": "Painting",
+                "name": "Natura morta con teschio",
+                "value": 2250000,
+                "weight": 3
+            }
+        ],
+        "stealing_tool": "Hammer"
+    },
+    {
+        "name": "Corridoio",
+        "x_val": 0,
+        "y_val": 0,
+        "isEntry": false,
+        "allowedDirections": [
+            "right",
+            "bottom"
+        ],
+        "artworks_list": [],
+        "stealing_tool": ""
+    },
+    {
+        "name": "Corridoio",
+        "x_val": 1,
+        "y_val": 1,
+        "isEntry": false,
+        "allowedDirections": [
+            "top",
+            "right",
+            "bottom",
+            "left"
+        ],
+        "artworks_list": [],
+        "stealing_tool": ""
+    },
+    {
+        "name": "Corridoio",
+        "x_val": 1,
+        "y_val": 2,
+        "isEntry": false,
+        "allowedDirections": [
+            "top",
+            "right",
+            "bottom",
+            "left"
+        ],
+        "artworks_list": [],
+        "stealing_tool": ""
+    },
+    {
+        "name": "Corridoio",
+        "x_val": 1,
+        "y_val": 3,
+        "isEntry": false,
+        "allowedDirections": [
+            "top",
+            "right",
+            "left"
+        ],
+        "artworks_list": [],
+        "stealing_tool": ""
+    },
+    {
+        "name": "Corridoio",
+        "x_val": 2,
+        "y_val": 0,
+        "isEntry": false,
+        "allowedDirections": [
+            "top",
+            "left"
+        ],
+        "artworks_list": [],
+        "stealing_tool": ""
+    }
+]
