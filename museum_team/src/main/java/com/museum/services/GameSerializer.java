@@ -59,6 +59,9 @@ public class GameSerializer extends JsonSerializer<Game> {
         for (Artwork artWrk : _player.get_artworkInventory()) {
             gen.writeStartObject();
 
+            gen.writeFieldName("type");
+            gen.writeString(artWrk.get_type().name());
+
             gen.writeFieldName("name");
             gen.writeString(artWrk.get_name());
 
@@ -67,9 +70,6 @@ public class GameSerializer extends JsonSerializer<Game> {
 
             gen.writeFieldName("weight");
             gen.writeNumber(artWrk.get_weight());
-
-            gen.writeFieldName("type");
-            gen.writeString(artWrk.get_type().name());
 
             gen.writeEndObject();
         }
@@ -148,6 +148,9 @@ public class GameSerializer extends JsonSerializer<Game> {
                 for (Artwork artWrk : room.get_artworksList()) {
                     gen.writeStartObject();
 
+                    gen.writeFieldName("type");
+                    gen.writeString(artWrk.get_type().name());
+
                     gen.writeFieldName("name");
                     gen.writeString(artWrk.get_name());
 
@@ -156,9 +159,6 @@ public class GameSerializer extends JsonSerializer<Game> {
 
                     gen.writeFieldName("weight");
                     gen.writeNumber(artWrk.get_weight());
-
-                    gen.writeFieldName("type");
-                    gen.writeString(artWrk.get_type().name());
 
                     gen.writeEndObject();
                 }

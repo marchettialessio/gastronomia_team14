@@ -11,6 +11,7 @@ import java.net.URISyntaxException;
 import static com.museum.config.Constants.*;
 
 import com.museum.data.Game;
+import com.museum.services.GoogleCloudBucketService;
 import com.museum.services.JacksonService;
 
 /**
@@ -22,13 +23,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, URISyntaxException {
-        Game game = JacksonService.deserializeGame(getClass().getResource(JSON_CONFIGURATION_URI).toURI());
-        JacksonService.serializeGame(game, "museum_team/src/main/resources/com/museum/app/json/serialprova.json");
-
+      //  Game game = JacksonService.deserializeGame(JSON_CONFIGURATION_PATH);
+      //  JacksonService.serializeGame(game, "museum_team/src/main/resources/com/museum/app/json/serialprova.json");
+        Game game2 = GoogleCloudBucketService.LoadGame("serialprova.json");
         scene = new Scene(loadFXML("view"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();

@@ -1,0 +1,6 @@
+# === IGNORARE FILE DI CREDENZIALI GOOGLE CLOUD ===
+
+museumteam-credential.json
+
+# === IDE E CONFIGURAZIONI LOCALI ===
+.vscode

@@ -14,6 +14,7 @@ import static com.museum.config.Constants.*;
 // Dichiara a Jackson che questa classe ha un Deserializer
 @JsonDeserialize(using = GameDeserializer.class)
 public class Game {
+
     Timer _timer;
     
     Player _player;
@@ -22,11 +23,23 @@ public class Game {
 
     Guard _guard;
 
+    /*
+     * profitto parziale derivato dalle opere già portate all'entrata
+     */
     int _currentProfit;
 
     /*
-     * questo costruttore viene utilizzato quando non avvio il game con una
-     * configurazione salvata
+     * questo costruttore viene utilizzato quando si importa una configurazione esistente
+     */
+    public Game(Player _player, Museum _museum, Guard _guard, int _currentProfit) {
+        this._player = _player;
+        this._museum = _museum;
+        this._guard = _guard;
+        this._currentProfit = _currentProfit;
+    }
+
+    /*
+     * questo costruttore viene utilizzato quando non avvio il game con una configurazione salvata
      */
     public Game(List<Room> roomsList) {
         this._museum = new Museum(roomsList);

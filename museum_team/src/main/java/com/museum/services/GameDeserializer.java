@@ -11,6 +11,9 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.museum.data.Artwork;
 import com.museum.data.Game;
+import com.museum.data.Guard;
+import com.museum.data.Museum;
+import com.museum.data.Player;
 import com.museum.data.Room;
 import com.museum.enumerator.ArtworkType;
 import com.museum.enumerator.DirectionType;
@@ -25,6 +28,128 @@ public class GameDeserializer extends JsonDeserializer<Game> {
     @Override
     public Game deserialize(JsonParser parser, DeserializationContext ctxt)
             throws IOException, JsonProcessingException {
+
+        Player player = null;
+        Guard guard = null;
+        int currentProfit = 0;
+
+        /*
+         * Questa prima parte solo nel caso in cui non sto deserializzando la
+         * configurazione iniziale
+         */
+
+        if (parser.currentToken() != JsonToken.START_ARRAY) {
+            int x_coord;
+            int y_coord;
+            StealingToolType stealingToolInventory;
+            List<Artwork> artworkInventory = new ArrayList<>();
+
+            /*
+             * Inizio oggetto player
+             */
+
+            parser.nextToken();
+            parser.nextToken();
+            parser.nextToken();
+            parser.nextToken();
+
+            x_coord = parser.getValueAsInt();
+
+            parser.nextToken();
+            parser.nextToken();
+
+            y_coord = parser.getValueAsInt();
+
+            parser.nextToken();
+            parser.nextToken();
+
+            String tmp = parser.getValueAsString();
+            if (tmp != null) {
+                stealingToolInventory = StealingToolType.valueOf(tmp.toUpperCase());
+            } else {
+                stealingToolInventory = null;
+            }
+
+            parser.nextToken();
+            parser.nextToken();
+            parser.nextToken();
+
+            if (parser.currentToken() != JsonToken.END_ARRAY) {
+                String artwName;
+                int value;
+                int weight;
+                ArtworkType type;
+
+                while (parser.currentToken() != JsonToken.END_ARRAY) {
+
+                    parser.nextToken();
+                    parser.nextToken();
+
+                    type = ArtworkType.valueOf(parser.getValueAsString().toUpperCase());
+
+                    parser.nextToken();
+                    parser.nextToken();
+
+                    artwName = parser.getValueAsString();
+
+                    parser.nextToken();
+                    parser.nextToken();
+
+                    value = parser.getValueAsInt();
+
+                    parser.nextToken();
+                    parser.nextToken();
+
+                    weight = parser.getValueAsInt();
+
+                    parser.nextToken();
+                    parser.nextToken();
+
+                    /*
+                     * aggiugno una opera alla lista
+                     */
+
+                    artworkInventory.add(new Artwork(artwName, value, weight, type));
+                }
+            }
+            player = new Player(artworkInventory, stealingToolInventory, x_coord, y_coord);
+
+            /*
+             * fine oggetto player
+             */
+
+            parser.nextToken();
+            parser.nextToken();
+            parser.nextToken();
+            parser.nextToken();
+            parser.nextToken();
+
+            /*
+             * inizio oggetto guardia
+             */
+            x_coord = parser.getValueAsInt();
+
+            parser.nextToken();
+            parser.nextToken();
+
+            y_coord = parser.getValueAsInt();
+
+            guard = new Guard(x_coord, y_coord);
+            /*
+             * fine oggetto guarida
+             */
+
+            parser.nextToken();
+            parser.nextToken();
+            parser.nextToken();
+
+            currentProfit = parser.getValueAsInt();
+
+            parser.nextToken();
+            parser.nextToken();
+
+        }
+
         String tmp;
         JsonToken token;
         String name;
@@ -146,7 +271,11 @@ public class GameDeserializer extends JsonDeserializer<Game> {
             parser.nextToken();
         }
 
-        return new Game(roomsList);
+        if (player == null) {
+            return new Game(roomsList);
+        } else {
+            return new Game(player, new Museum(roomsList), guard, currentProfit);
+        }
     }
 
 }

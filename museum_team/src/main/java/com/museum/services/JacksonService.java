@@ -1,7 +1,6 @@
 package com.museum.services;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,14 +30,11 @@ public class JacksonService {
 
             // Classe per la scrittura su file
             fw = new FileWriter(f);
-           // fw.write("test");
-          
+            
             // Scrittura sul file
-             om.writeValue(fw, game);
-            fw.flush();
+            om.writeValue(fw, game);
 
         } catch (IOException e) {
-            int prova = 0;
 
         } finally {
             if (fw != null) {
@@ -58,7 +54,7 @@ public class JacksonService {
      * - quando carico una partita salvata e devo deserializzare un json da google
      * cloud buckets
      */
-    public static Game deserializeGame(URI fileName) {
+    public static Game deserializeGame(String fileName) {
         Game game = null;
         File f;
         FileReader fr = null;

@@ -24,6 +24,30 @@ public class Constants {
     /*
      * Uri del json di configurazione iniziale
      */
-    public static final String JSON_CONFIGURATION_URI = "/com/museum/app/json/configuration.json";
+    public static final String JSON_CONFIGURATION_PATH = "museum_team/src/main/resources/com/museum/app/json/configuration.json";
 
+    /*
+     * Uri del json con le credenziali di cloud buckets
+     */
+    public static final String CREDENTIALS_PATH = "museumteam-credential.json";
+
+    /*
+     * project-id su GCB
+     */
+    public static final String PROJECT_ID = "museumteam";
+
+    /*
+     * nome del bucket su GCB
+     */
+    public static final String BUCKET_NAME = "available-configuration";
+
+    /*
+     * nome del blob che lista le configurazioni salvate
+     */
+    public static final String BLOB_AVAILABLE_CONFIGURATION = "available-configuration.json";
+
+    /*
+     * path in cui scaricare i file di configurazioni
+     */
+    public static final String DOWNLOAD_PATH = "museum_team/src/main/resources/com/museum/app/json/downloaded_file.json";
 }

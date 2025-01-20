@@ -7,7 +7,7 @@
     },
     "guardia": {
         "x_coord": 0,
-        "y_coord": 2
+        "y_coord": 0
     },
     "currentProfit": 0,
     "roomsList": [
@@ -60,16 +60,16 @@
             ],
             "artworksList": [
                 {
+                    "type": "PAINTING",
                     "name": "Gioconda",
                     "value": 3000000,
-                    "weight": 3,
-                    "type": "PAINTING"
+                    "weight": 3
                 },
                 {
+                    "type": "JEWELRY",
                     "name": "Anello di Lorenzo de Medici",
                     "value": 1500000,
-                    "weight": 2,
-                    "type": "JEWELRY"
+                    "weight": 2
                 }
             ],
             "stealingTool": null
@@ -99,16 +99,16 @@
             ],
             "artworksList": [
                 {
+                    "type": "PAINTING",
                     "name": "Persistenza della memoria",
                     "value": 2250000,
-                    "weight": 3,
-                    "type": "PAINTING"
+                    "weight": 3
                 },
                 {
+                    "type": "JEWELRY",
                     "name": "Orologio di Churchill",
                     "value": 500000,
-                    "weight": 2,
-                    "type": "JEWELRY"
+                    "weight": 2
                 }
             ],
             "stealingTool": null
@@ -124,16 +124,16 @@
             ],
             "artworksList": [
                 {
+                    "type": "PAINTING",
                     "name": "Impressionismo, levar del sole",
                     "value": 2000000,
-                    "weight": 3,
-                    "type": "PAINTING"
+                    "weight": 3
                 },
                 {
+                    "type": "SCULPTURE",
                     "name": "Bimba che ride",
                     "value": 750000,
-                    "weight": 4,
-                    "type": "SCULPTURE"
+                    "weight": 4
                 }
             ],
             "stealingTool": "LASER_CONTROLLER"
@@ -163,16 +163,16 @@
             ],
             "artworksList": [
                 {
+                    "type": "SCULPTURE",
                     "name": "Busto di nefertiti",
                     "value": 2000000,
-                    "weight": 5,
-                    "type": "SCULPTURE"
+                    "weight": 5
                 },
                 {
+                    "type": "SCULPTURE",
                     "name": "Ceramiche dinastia Tang",
                     "value": 1500000,
-                    "weight": 4,
-                    "type": "SCULPTURE"
+                    "weight": 4
                 }
             ],
             "stealingTool": null
@@ -187,16 +187,16 @@
             ],
             "artworksList": [
                 {
+                    "type": "SCULPTURE",
                     "name": "Busto di Cesare Augusto",
                     "value": 2500000,
-                    "weight": 5,
-                    "type": "SCULPTURE"
+                    "weight": 5
                 },
                 {
+                    "type": "SCULPTURE",
                     "name": "Afrodite di Milo",
                     "value": 1250000,
-                    "weight": 4,
-                    "type": "SCULPTURE"
+                    "weight": 4
                 }
             ],
             "stealingTool": "KNIFE"
@@ -225,16 +225,16 @@
             ],
             "artworksList": [
                 {
+                    "type": "PAINTING",
                     "name": "Canestra di frutta",
                     "value": 2000000,
-                    "weight": 3,
-                    "type": "PAINTING"
+                    "weight": 3
                 },
                 {
+                    "type": "PAINTING",
                     "name": "Natura morta con teschio",
                     "value": 2250000,
-                    "weight": 3,
-                    "type": "PAINTING"
+                    "weight": 3
                 }
             ],
             "stealingTool": "HAMMER"
