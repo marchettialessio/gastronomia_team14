@@ -7,27 +7,28 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import static com.museum.config.Constants.*;
+
+import com.museum.services.JacksonService;
 
 /**
  * JavaFX App
  */
-public class main extends Application {
+public class Main extends Application {
 
     private static Scene scene;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+    public void start(Stage stage) throws IOException, URISyntaxException {
+        JacksonService.deserializeGame(getClass().getResource(JSON_CONFIGURATION_URI).toURI());
+
+        scene = new Scene(loadFXML("view"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
-
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

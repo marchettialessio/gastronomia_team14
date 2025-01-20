@@ -9,8 +9,8 @@
             "bottom",
             "left"
         ],
-        "artworks_list": [],
-        "stealing_tool": ""
+        "artworksList": [],
+        "stealingTool": ""
     },
     {
         "name": "Sala del Rinascimento",
@@ -22,7 +22,7 @@
             "right",
             "bottom"
         ],
-        "artworks_list": [
+        "artworksList": [
             {
                 "type": "Painting",
                 "name": "Gioconda",
@@ -36,7 +36,7 @@
                 "weight": 2
             }
         ],
-        "stealing_tool": ""
+        "stealingTool": ""
     },
     {
         "name": "Galleria dell'impressionismo",
@@ -47,7 +47,7 @@
             "top",
             "right"
         ],
-        "artworks_list": [
+        "artworksList": [
             {
                 "type": "Painting",
                 "name": "Impressionismo, levar del sole",
@@ -61,7 +61,7 @@
                 "weight": 4
             }
         ],
-        "stealing_tool": "LaserController"
+        "stealingTool": "Laser_Controller"
     },
     {
         "name": "Sculture classiche",
@@ -71,7 +71,7 @@
         "allowedDirections": [
             "right"
         ],
-        "artworks_list": [
+        "artworksList": [
             {
                 "type": "Sculpture",
                 "name": "Busto di Cesare Augusto",
@@ -85,7 +85,7 @@
                 "weight": 4
             }
         ],
-        "stealing_tool": "Knife"
+        "stealingTool": "Knife"
     },
     {
         "name": "Sala dell'arte moderna",
@@ -96,7 +96,7 @@
             "top",
             "left"
         ],
-        "artworks_list": [
+        "artworksList": [
             {
                 "type": "Painting",
                 "name": "Persistenza della memoria",
@@ -110,7 +110,7 @@
                 "weight": 2
             }
         ],
-        "stealing_tool": ""
+        "stealingTool": ""
     },
     {
         "name": "Sezione artefatti culturali",
@@ -121,7 +121,7 @@
             "bottom",
             "left"
         ],
-        "artworks_list": [
+        "artworksList": [
             {
                 "type": "Sculpture",
                 "name": "Busto di nefertiti",
@@ -135,7 +135,7 @@
                 "weight": 4
             }
         ],
-        "stealing_tool": ""
+        "stealingTool": ""
     },
     {
         "name": "Natura morta",
@@ -146,7 +146,7 @@
             "top",
             "left"
         ],
-        "artworks_list": [
+        "artworksList": [
             {
                 "type": "Painting",
                 "name": "Canestra di frutta",
@@ -160,7 +160,7 @@
                 "weight": 3
             }
         ],
-        "stealing_tool": "Hammer"
+        "stealingTool": "Hammer"
     },
     {
         "name": "Corridoio",
@@ -171,8 +171,8 @@
             "right",
             "bottom"
         ],
-        "artworks_list": [],
-        "stealing_tool": ""
+        "artworksList": [],
+        "stealingTool": ""
     },
     {
         "name": "Corridoio",
@@ -185,8 +185,8 @@
             "bottom",
             "left"
         ],
-        "artworks_list": [],
-        "stealing_tool": ""
+        "artworksList": [],
+        "stealingTool": ""
     },
     {
         "name": "Corridoio",
@@ -199,8 +199,8 @@
             "bottom",
             "left"
         ],
-        "artworks_list": [],
-        "stealing_tool": ""
+        "artworksList": [],
+        "stealingTool": ""
     },
     {
         "name": "Corridoio",
@@ -212,8 +212,8 @@
             "right",
             "left"
         ],
-        "artworks_list": [],
-        "stealing_tool": ""
+        "artworksList": [],
+        "stealingTool": ""
     },
     {
         "name": "Corridoio",
@@ -224,7 +224,7 @@
             "top",
             "left"
         ],
-        "artworks_list": [],
-        "stealing_tool": ""
+        "artworksList": [],
+        "stealingTool": ""
     }
 ]
