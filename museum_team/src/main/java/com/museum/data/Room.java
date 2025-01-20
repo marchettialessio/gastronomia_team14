@@ -4,11 +4,15 @@ import java.util.List;
 
 import com.museum.enumerator.*;;
 
+/*
+ * classe che rappresenta una stanza del museo
+ */
 public class Room {
     /*
      * nome della stanza
      */
     String _name;
+
     /*
      * coordinata x della stanza
      */
@@ -21,14 +25,18 @@ public class Room {
      * variabile booleana che indica se la matrice è l'entrata del museo
      */
     boolean _isEntry;
+
     /*
-     * in questa lista sono presenti le possibili direzioni che si possono prendere a partire da questa stanza
+     * in questa lista sono presenti le possibili direzioni che si possono prendere
+     * a partire da questa stanza
      */
     List<DirectionType> _allowedDirections;
+
     /*
      * indica se è presente un oggetto per rubare
      */
     StealingToolType _stealingTool;
+
     /*
      * lista delle opere presenti nella stanza
      */
@@ -45,11 +53,31 @@ public class Room {
         this._artworksList = _artworksList;
     }
 
+    public String get_name() {
+        return _name;
+    }
+
     public int get_x_val() {
         return _x_val;
     }
 
     public int get_y_val() {
         return _y_val;
+    }
+
+    public boolean get_isEntry() {
+        return _isEntry;
+    }
+
+    public List<DirectionType> get_allowedDirections() {
+        return _allowedDirections;
+    }
+
+    public StealingToolType get_stealingTool() {
+        return _stealingTool;
+    }
+
+    public List<Artwork> get_artworksList() {
+        return _artworksList;
     }
 }

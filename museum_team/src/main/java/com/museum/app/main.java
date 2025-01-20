@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import static com.museum.config.Constants.*;
 
+import com.museum.data.Game;
 import com.museum.services.JacksonService;
 
 /**
@@ -21,7 +22,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, URISyntaxException {
-        JacksonService.deserializeGame(getClass().getResource(JSON_CONFIGURATION_URI).toURI());
+        Game game = JacksonService.deserializeGame(getClass().getResource(JSON_CONFIGURATION_URI).toURI());
+        JacksonService.serializeGame(game, "museum_team/src/main/resources/com/museum/app/json/serialprova.json");
 
         scene = new Scene(loadFXML("view"), 640, 480);
         stage.setScene(scene);

@@ -2,6 +2,9 @@ package com.museum.data;
 import static com.museum.config.Constants.*;
 import java.util.List;
 
+/*
+ * classe che rappresenta il museo
+ */
 public class Museum {
     /*
      * matrice che contiene le stanze mappate nelle loro coordinate
@@ -24,5 +27,9 @@ public class Museum {
             matrix[room.get_y_val()][room.get_x_val()] = room;
         }
         return matrix;
+    }
+
+    public Room[][] get_rooms_matrix() {
+        return _rooms_matrix;
     }
 }

@@ -10,7 +10,7 @@
             "left"
         ],
         "artworksList": [],
-        "stealingTool": ""
+        "stealingTool": null
     },
     {
         "name": "Sala del Rinascimento",
@@ -36,7 +36,7 @@
                 "weight": 2
             }
         ],
-        "stealingTool": ""
+        "stealingTool": null
     },
     {
         "name": "Galleria dell'impressionismo",
@@ -110,7 +110,7 @@
                 "weight": 2
             }
         ],
-        "stealingTool": ""
+        "stealingTool": null
     },
     {
         "name": "Sezione artefatti culturali",
@@ -135,7 +135,7 @@
                 "weight": 4
             }
         ],
-        "stealingTool": ""
+        "stealingTool": null
     },
     {
         "name": "Natura morta",
@@ -172,7 +172,7 @@
             "bottom"
         ],
         "artworksList": [],
-        "stealingTool": ""
+        "stealingTool": null
     },
     {
         "name": "Corridoio",
@@ -186,7 +186,7 @@
             "left"
         ],
         "artworksList": [],
-        "stealingTool": ""
+        "stealingTool": null
     },
     {
         "name": "Corridoio",
@@ -200,7 +200,7 @@
             "left"
         ],
         "artworksList": [],
-        "stealingTool": ""
+        "stealingTool": null
     },
     {
         "name": "Corridoio",
@@ -213,7 +213,7 @@
             "left"
         ],
         "artworksList": [],
-        "stealingTool": ""
+        "stealingTool": null
     },
     {
         "name": "Corridoio",
@@ -225,6 +225,6 @@
             "left"
         ],
         "artworksList": [],
-        "stealingTool": ""
+        "stealingTool": null
     }
 ]

@@ -18,6 +18,10 @@ import com.museum.enumerator.StealingToolType;
 
 public class GameDeserializer extends JsonDeserializer<Game> {
 
+    /*
+     * metodo che effettua la deserializzazione di game.
+     * chiamato automaticamente quando leggo il file
+     */
     @Override
     public Game deserialize(JsonParser parser, DeserializationContext ctxt)
             throws IOException, JsonProcessingException {
@@ -119,15 +123,15 @@ public class GameDeserializer extends JsonDeserializer<Game> {
                     artworksList.add(new Artwork(artwName, value, weight, type));
                 }
             } else {
-                artworksList = null;
+                artworksList = new ArrayList<>();
             }
 
             parser.nextToken();
             parser.nextToken();
 
-            tmp = parser.getValueAsString().toUpperCase();
-            if (tmp != "") {
-                stealingTool = StealingToolType.valueOf(tmp);
+            tmp = parser.getValueAsString();
+            if (tmp != null) {
+                stealingTool = StealingToolType.valueOf(tmp.toUpperCase());
             } else {
                 stealingTool = null;
             }
