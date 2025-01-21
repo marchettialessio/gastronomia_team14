@@ -44,10 +44,20 @@ public class Constants {
     /*
      * nome del blob che lista le configurazioni salvate
      */
-    public static final String BLOB_AVAILABLE_CONFIGURATION = "available-configuration.json";
+    public static final String BLOB_AVAILABLE_CONFIGURATION = "available-configuration.txt";
 
     /*
      * path in cui scaricare i file di configurazioni
      */
     public static final String DOWNLOAD_PATH = "museum_team/src/main/resources/com/museum/app/json/downloaded_file.json";
+
+    /*
+     * path in cui salvare un file serializzato
+     */
+    public static final String SERIALIZE_PATH = "museum_team/src/main/resources/com/museum/app/json/serialize_file.json";
+
+    /*
+     * path in cui salvare la lista di configurazioni salvate
+     */
+    public static final String AVAILABLE_CONFIGURATION_LIST_PATH = "museum_team/src/main/resources/com/museum/app/json/available_configuration_file.txt";
 }

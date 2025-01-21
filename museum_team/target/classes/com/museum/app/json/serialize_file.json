@@ -1,0 +1,15 @@
+{
+    "player": {
+        "x_coord": 1,
+        "y_coord": 0,
+        "stealingToolInventory": null,
+        "artworkInventory": []
+    },
+    "guardia": {
+        "x_coord": 1,
+        "y_coord": 1
+    },
+    "currentProfit": 0,
+    "roomsList": [
+        {
+            "name"
