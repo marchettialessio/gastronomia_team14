@@ -2,6 +2,16 @@ package com.museum.config;
 
 public class Constants {
     /*
+     * Massimo peso che il palyer può portare
+     */
+    public static final int MAX_WEIGHT = 10;
+
+    /*
+     * Obbiettivo in denaro che il player deve raggiungere per vincere la partita
+     */
+    public static final int WIN_GOAL = 0;//15000000;
+
+    /*
      * Numero di righe della matrice contenente le stanze
      */
     public static final int ROWS_NUM = 4;
@@ -44,7 +54,7 @@ public class Constants {
     /*
      * nome del blob che lista le configurazioni salvate
      */
-    public static final String BLOB_AVAILABLE_CONFIGURATION = "available-configuration.txt";
+    public static final String BLOB_AVAILABLE_CONFIGURATION = "available-configuration2.txt";
 
     /*
      * path in cui scaricare i file di configurazioni
@@ -60,4 +70,29 @@ public class Constants {
      * path in cui salvare la lista di configurazioni salvate
      */
     public static final String AVAILABLE_CONFIGURATION_LIST_PATH = "museum_team/src/main/resources/com/museum/app/json/available_configuration_file.txt";
+
+    /*
+     * path fxml selezione
+     */
+    public static final String FXML_SELEZIONE = "view/selection.fxml";
+
+    /*
+     * path fxml museo
+     */
+    public static final String FXML_MUSEUM = "view/museum.fxml";
+
+    /*
+     * dimensione lato di una stanza in pixel
+     */
+    public static final int ROOM_DIMENSION = 120;
+
+    /*
+     * dimensione lato di una immagine in pixel
+     */
+    public static final int IMAGE_DIMENSION = 35;
+
+    /*
+     * dimensione padding finestra
+     */
+    public static final int WINDOW_PADDING = 25;
 }

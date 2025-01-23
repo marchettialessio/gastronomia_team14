@@ -6,16 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import static com.museum.config.Constants.FXML_MUSEUM;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.museum.config.Constants.*;
-
-import com.museum.data.Game;
-import com.museum.services.GoogleCloudBucketService;
-import com.museum.services.JacksonService;
 
 /**
  * JavaFX App
@@ -26,18 +20,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, URISyntaxException {
-      //  Game game = JacksonService.deserializeGame(JSON_CONFIGURATION_PATH);
-      //  JacksonService.serializeGame(game, "museum_team/src/main/resources/com/museum/app/json/serialprova.json");
-        // List<String> list = GoogleCloudBucketService.GetAvailableConfigurationList();
-        // Game game2 = GoogleCloudBucketService.LoadGame("serialprova.json");
-        // GoogleCloudBucketService.SaveGame("prova", new Game(new ArrayList<>()));
-        scene = new Scene(loadFXML("view"), 640, 480);
+        scene = new Scene(loadFXML(FXML_MUSEUM), 410, 580);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
         return fxmlLoader.load();
     }
 

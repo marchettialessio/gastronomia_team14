@@ -28,6 +28,7 @@ public class Game {
      */
     int _currentProfit;
 
+
     /*
      * questo costruttore viene utilizzato quando si importa una configurazione esistente
      */
@@ -82,5 +83,9 @@ public class Game {
 
     public int get_currentProfit() {
         return _currentProfit;
+    }
+
+    public void set_currentProfit(int _currentProfit) {
+        this._currentProfit += _currentProfit;
     }
 }

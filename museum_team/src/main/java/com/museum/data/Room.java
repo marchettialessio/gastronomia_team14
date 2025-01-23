@@ -37,6 +37,7 @@ public class Room {
      */
     StealingToolType _stealingTool;
 
+
     /*
      * lista delle opere presenti nella stanza
      */
@@ -79,5 +80,9 @@ public class Room {
 
     public List<Artwork> get_artworksList() {
         return _artworksList;
+    }
+
+    public void set_stealingTool(StealingToolType _stealingTool) {
+        this._stealingTool = _stealingTool;
     }
 }

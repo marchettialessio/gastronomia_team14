@@ -22,12 +22,16 @@ import com.museum.data.Game;
 
 import static com.museum.config.Constants.*;
 
+
+/*
+ * Classe con metodi statici per interfacciarsi a google cloud buckets
+ */
 public class GoogleCloudBucketService {
 
     /*
      * metodo per avere i nomi dei file delle configurazioni disponibili
      */
-    public static List<String> GetAvailableConfigurationList() {
+    public static List<String> getAvailableConfigurationList() {
         try {
             /*
              * Autenticazione con Google Cloud
@@ -58,7 +62,7 @@ public class GoogleCloudBucketService {
             BufferedReader reader = new BufferedReader(new StringReader(content));
             String line;
             while ((line = reader.readLine()) != null) {
-                lines.add(line);
+                lines.add(line.replaceFirst("\\.json$", ""));
             }
             return lines;
 
@@ -70,8 +74,8 @@ public class GoogleCloudBucketService {
     /*
      * metodo per aggiornare la lista delle configurazioni disponibili
      */
-    public static void UpdateAvailableConfigurationList(String newBlobName) {
-        List<String> availableConfiguration = GoogleCloudBucketService.GetAvailableConfigurationList();
+    public static void updateAvailableConfigurationList(String newBlobName) {
+        List<String> availableConfiguration = GoogleCloudBucketService.getAvailableConfigurationList();
         /*
          * devo fare update solo se la configurazione non è già presente
          */
@@ -120,7 +124,7 @@ public class GoogleCloudBucketService {
     /*
      * metodo per caricare la configurazione di un gioco salvata in json
      */
-    public static Game LoadGame(String blobName) {
+    public static Game loadGame(String blobName) {
 
         try {
             /*
@@ -134,7 +138,7 @@ public class GoogleCloudBucketService {
             /*
              * ottengo il file
              */
-            Blob blob = storage.get(BUCKET_NAME, blobName);
+            Blob blob = storage.get(BUCKET_NAME, blobName + ".json");
             if (blob == null) {
                 throw new IOException("Il file non esiste nel bucket!");
             }
@@ -164,7 +168,7 @@ public class GoogleCloudBucketService {
     /*
      * metodo per salvare un game in un blob
      */
-    public static void SaveGame(String configurationName, Game game) {
+    public static void saveGame(String configurationName, Game game) {
         try {
             /*
              * Autenticazione con Google Cloud
@@ -195,7 +199,7 @@ public class GoogleCloudBucketService {
             /*
              * aggiorno la lista con le configurazioni disponibili
              */
-            GoogleCloudBucketService.UpdateAvailableConfigurationList(configurationName + ".json");
+            GoogleCloudBucketService.updateAvailableConfigurationList(configurationName);
 
             /*
              * elimino il file temporaneo
