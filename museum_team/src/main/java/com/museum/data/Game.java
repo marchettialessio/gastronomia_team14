@@ -1,6 +1,7 @@
 package com.museum.data;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -16,7 +17,7 @@ import static com.museum.config.Constants.*;
 public class Game {
 
     Timer _timer;
-    
+
     Player _player;
 
     Museum _museum;
@@ -28,25 +29,40 @@ public class Game {
      */
     int _currentProfit;
 
+    /*
+     * regiostro della coordinata x del player
+     */
+    LinkedList<Integer> _xCoorinateReg;
 
     /*
-     * questo costruttore viene utilizzato quando si importa una configurazione esistente
+     * regiostro della coordinata y del player
+     */
+    LinkedList<Integer> _yCoorinateReg;
+
+    /*
+     * questo costruttore viene utilizzato quando si importa una configurazione
+     * esistente
      */
     public Game(Player _player, Museum _museum, Guard _guard, int _currentProfit) {
         this._player = _player;
         this._museum = _museum;
         this._guard = _guard;
         this._currentProfit = _currentProfit;
+        this._xCoorinateReg = new LinkedList<>();
+        this._yCoorinateReg = new LinkedList<>();
     }
 
     /*
-     * questo costruttore viene utilizzato quando non avvio il game con una configurazione salvata
+     * questo costruttore viene utilizzato quando non avvio il game con una
+     * configurazione salvata
      */
     public Game(List<Room> roomsList) {
         this._museum = new Museum(roomsList);
         this._guard = GenerateRandomGuardPosition();
         this._currentProfit = 0;
         this._player = new Player(new ArrayList<>(), null, ENTRY_X_COORD, ENTRY_Y_COORD);
+        this._xCoorinateReg = new LinkedList<>();
+        this._yCoorinateReg = new LinkedList<>();
     }
 
     /*
@@ -67,6 +83,21 @@ public class Game {
         }
 
         return new Guard(x_coord, y_coord);
+    }
+
+    public void updatePositionReg(int x_coord, int y_coord) {
+        this._xCoorinateReg.add(x_coord);
+        this._yCoorinateReg.add(y_coord);
+    }
+
+    public int get_lastYCoordinate() {
+        _yCoorinateReg.removeLast();
+        return _yCoorinateReg.getLast();
+    }
+
+    public int get_lastXCoordinate() {
+        _xCoorinateReg.removeLast();
+        return _xCoorinateReg.getLast();
     }
 
     public Player get_player() {

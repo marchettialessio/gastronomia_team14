@@ -3,6 +3,7 @@ package com.museum.app;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import com.museum.data.Artwork;
@@ -61,7 +62,7 @@ public class Controller {
 
         setConfiguration(false);
 
-        showPlayer();
+        showPlayer(true);
 
         // TODO: (è roba facoltativa) ora bisogna visualizzare la guardia e settare il
         // timer
@@ -101,7 +102,7 @@ public class Controller {
                          * si può fare il movimento
                          */
                         player.set_y_coord(y_coord - 1);
-                        showPlayer();
+                        showPlayer(true);
                     } else {
                         /*
                          * non si può fare il movimento
@@ -121,7 +122,7 @@ public class Controller {
                          * si può fare il movimento
                          */
                         player.set_y_coord(y_coord + 1);
-                        showPlayer();
+                        showPlayer(true);
                     } else {
                         /*
                          * non si può fare il movimento
@@ -142,7 +143,7 @@ public class Controller {
                          * si può fare il movimento
                          */
                         player.set_x_coord(x_coord + 1);
-                        showPlayer();
+                        showPlayer(true);
                     } else {
                         /*
                          * non si può fare il movimento
@@ -163,7 +164,7 @@ public class Controller {
                          * si può fare il movimento
                          */
                         player.set_x_coord(x_coord - 1);
-                        showPlayer();
+                        showPlayer(true);
                     } else {
                         /*
                          * non si può fare il movimento
@@ -198,7 +199,18 @@ public class Controller {
 
                     break;
                 case "back":
+                    try {
+                        player.set_x_coord(game.get_lastXCoordinate());
+                        player.set_y_coord(game.get_lastYCoordinate());
 
+                        showPlayer(false);
+                    } catch (NoSuchElementException e) {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Attenzione");
+                        alert.setHeaderText("Non hai fatto movimenti precedenti a questo");
+                        alert.show();
+                        game.updatePositionReg(game.get_player().get_x_coord(), game.get_player().get_y_coord());
+                    }
                     break;
                 case "look":
                     /*
@@ -413,7 +425,7 @@ public class Controller {
     /*
      * metodo per visualizzare un player sulla mappa
      */
-    public void showPlayer() {
+    public void showPlayer(boolean updatePositionReg) {
         /*
          * va creata solo la prima volta
          */
@@ -444,6 +456,9 @@ public class Controller {
 
         imageView.setLayoutX(centerX);
         imageView.setLayoutY(centerY);
+
+        if (updatePositionReg)
+            game.updatePositionReg(game.get_player().get_x_coord(), game.get_player().get_y_coord());
 
     }
 
