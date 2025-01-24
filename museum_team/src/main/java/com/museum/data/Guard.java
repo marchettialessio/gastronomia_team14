@@ -26,4 +26,12 @@ public class Guard {
     public int get_y_coord() {
         return _y_coord;
     }
+
+    public void set_x_coord(int _x_coord) {
+        this._x_coord = _x_coord;
+    }
+
+    public void set_y_coord(int _y_coord) {
+        this._y_coord = _y_coord;
+    }
 }

@@ -7,6 +7,7 @@ import java.util.Random;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.museum.app.Controller;
 import com.museum.services.*;
 import static com.museum.config.Constants.*;
 
@@ -43,13 +44,15 @@ public class Game {
      * questo costruttore viene utilizzato quando si importa una configurazione
      * esistente
      */
-    public Game(Player _player, Museum _museum, Guard _guard, int _currentProfit) {
+    public Game(Player _player, Museum _museum, Guard _guard, int _currentProfit, int _timeRemaining) {
         this._player = _player;
         this._museum = _museum;
         this._guard = _guard;
         this._currentProfit = _currentProfit;
         this._xCoorinateReg = new LinkedList<>();
         this._yCoorinateReg = new LinkedList<>();
+        Controller controller = Controller.getInstance();
+        this._timer = new Timer(_timeRemaining, controller);
     }
 
     /*
@@ -63,12 +66,14 @@ public class Game {
         this._player = new Player(new ArrayList<>(), null, ENTRY_X_COORD, ENTRY_Y_COORD);
         this._xCoorinateReg = new LinkedList<>();
         this._yCoorinateReg = new LinkedList<>();
+        Controller controller = Controller.getInstance();
+        this._timer = new Timer(PLAYER_TIME, controller);
     }
 
     /*
      * metodo per generare la guardia in una posizione
      */
-    private Guard GenerateRandomGuardPosition() {
+    public Guard GenerateRandomGuardPosition() {
         Random random = new Random();
         int x_coord = random.nextInt(2);
         int y_coord = random.nextInt(3);
@@ -83,6 +88,37 @@ public class Game {
         }
 
         return new Guard(x_coord, y_coord);
+    }
+
+    /*
+     * metodo per spostare la guardia in una posizione casuale
+     */
+    public void UpdateRandomGuardPosition() {
+        Random random = new Random();
+        int guardX = this._guard.get_x_coord();
+        int guardY = this._guard.get_y_coord();
+        Room room = this._museum.get_rooms_matrix()[guardY][guardX];
+
+        int randomDirection = random.nextInt(room.get_allowedDirections().size());
+
+        switch (room.get_allowedDirections().get(randomDirection).name()) {
+            case "TOP":
+                this._guard.set_y_coord(guardY - 1);
+                break;
+            case "RIGHT":
+                this._guard.set_x_coord(guardX + 1);
+                break;
+            case "BOTTOM":
+                this._guard.set_y_coord(guardY + 1);
+                break;
+            case "LEFT":
+                this._guard.set_x_coord(guardX - 1);
+                break;
+
+            default:
+                break;
+        }
+
     }
 
     public void updatePositionReg(int x_coord, int y_coord) {
@@ -118,5 +154,13 @@ public class Game {
 
     public void set_currentProfit(int _currentProfit) {
         this._currentProfit += _currentProfit;
+    }
+
+    public Timer get_timer() {
+        return _timer;
+    }
+
+    public void set_guard(Guard _guard) {
+        this._guard = _guard;
     }
 }

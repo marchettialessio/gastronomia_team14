@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
@@ -44,11 +45,27 @@ public class Controller {
     AnchorPane root;
 
     @FXML
-    ImageView imageView;
+    ImageView playerImageView;
+
+    @FXML
+    ImageView guardImageView;
+
+    @FXML
+    ProgressBar progressBar;
 
     String selectedConfiguration;
 
     Game game;
+
+    private static Controller instance;
+
+    public Controller() {
+        instance = this; // Salva l'istanza all'avvio (pattern singleton)
+    }
+
+    public static Controller getInstance() {
+        return instance;
+    }
 
     /*
      * Metodo di inizializzazione chiamato automaticamente dopo il caricamento
@@ -56,16 +73,60 @@ public class Controller {
      */
     @FXML
     public void initialize() {
-        if (imageView != null)
-            root.getChildren().remove(imageView);
-        imageView = null;
+        if (playerImageView != null)
+            root.getChildren().remove(playerImageView);
+        playerImageView = null;
 
+        /*
+         * carico il game corretto
+         */
         setConfiguration(false);
 
+        /*
+         * mostro il player
+         */
         showPlayer(true);
 
-        // TODO: (è roba facoltativa) ora bisogna visualizzare la guardia e settare il
-        // timer
+        /*
+         * mostro la guardia
+         */
+        showGuard();
+    }
+
+    // Metodo per aggiornare il timer sulla UI
+    public void updateTimer(int timeRemaining) {
+        double progress = (double) timeRemaining / PLAYER_TIME;
+        progressBar.setProgress(progress);
+    }
+
+    /*
+     * metodo chiamato dal timer per modificare la posizionde della guardia
+     */
+    public void updateGuard() {
+        game.UpdateRandomGuardPosition();
+        showGuard();
+    }
+
+    /*
+     * Metodo chiamato quando il timer è finito
+     */
+    public void timerFinished() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("ATTENZIONE!");
+        alert.setHeaderText("HAI PERSO, IL TIMER E' SCADUTO!");
+        alert.setContentText("Vuoi chiudere l'applicazione (Sì) o continuare (No)?");
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+
+        Platform.runLater(() -> {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.YES) {
+                // L'utente ha scelto "Sì"
+                Platform.exit();
+            } else {
+                // L'utente ha scelto "No" o ha chiuso la finestra
+                initialize();
+            }
+        });
 
     }
 
@@ -243,13 +304,24 @@ public class Controller {
                     dialog.setHeaderText("Inserire il nome della partita");
                     dialog.setContentText("Inserisci nome:");
 
+                    game.get_timer().stop();
+
                     // Mostra la finestra di dialogo e attende l'input dell'utente
                     Optional<String> resultDialog = dialog.showAndWait();
+
+                    game.get_timer().start();
 
                     // Controlla se l'utente ha inserito un valore
                     resultDialog.ifPresent(name -> {
                         if (name != "") {
-                            GoogleCloudBucketService.saveGame(name, game);
+                            try {
+                                GoogleCloudBucketService.saveGame(name, game);
+                            } catch (Exception e) {
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Attenzione");
+                                alert.setHeaderText("Non hai la chiave di accesso al google cloud bucket");
+                                alert.show();
+                            }
                         }
                     });
 
@@ -345,16 +417,28 @@ public class Controller {
      * comando load
      */
     public void setConfiguration(boolean isFromLoadCommand) {
+        /*
+         * blocco il vecchio timer
+         */
+        if (game != null)
+            game.get_timer().stop();
+
         List<String> availableConfiguration = GoogleCloudBucketService.getAvailableConfigurationList();
         /*
          * controllo se ho o meno configurazioni salvate
          * availableConfiguration == null si verifica se non riesco ad accedere al GCB
          */
-        if (availableConfiguration.isEmpty() || availableConfiguration == null) {
+        if (availableConfiguration == null || availableConfiguration.isEmpty()) {
             /*
              * caso in cui non ho configurazioni salvate.
              * carico la configurazione di default
              */
+            if (isFromLoadCommand) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Attenzione");
+                alert.setHeaderText("non hai configurazioni salvate");
+                alert.show();
+            }
             game = JacksonService.deserializeGame(JSON_CONFIGURATION_PATH);
         } else {
             /*
@@ -405,21 +489,19 @@ public class Controller {
                 }
 
             } else {
-                if (isFromLoadCommand) {
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Attenzione");
-                    alert.setHeaderText("non hai configurazioni salvate");
-                    alert.show();
-                } else {
-                    /*
-                     * L'utente vuole la configurazione base
-                     */
-                    game = JacksonService.deserializeGame(JSON_CONFIGURATION_PATH);
 
-                }
+                /*
+                 * L'utente vuole la configurazione base
+                 */
+                game = JacksonService.deserializeGame(JSON_CONFIGURATION_PATH);
             }
 
         }
+
+        /*
+         * avvio il timer
+         */
+        game.get_timer().start();
     }
 
     /*
@@ -429,20 +511,20 @@ public class Controller {
         /*
          * va creata solo la prima volta
          */
-        if (imageView == null) {
+        if (playerImageView == null) {
             /*
              * Carica l'immagine dalla cartella delle risorse
              */
             Image image = new Image(getClass().getResourceAsStream("img/player.png"));
-            imageView = new ImageView(image);
+            playerImageView = new ImageView(image);
 
             /*
              * Imposta le dimensioni desiderate dell'immagine
              */
-            imageView.setFitWidth(IMAGE_DIMENSION);
-            imageView.setFitHeight(IMAGE_DIMENSION);
+            playerImageView.setFitWidth(IMAGE_DIMENSION);
+            playerImageView.setFitHeight(IMAGE_DIMENSION);
 
-            root.getChildren().add(imageView);
+            root.getChildren().add(playerImageView);
 
         }
 
@@ -454,12 +536,89 @@ public class Controller {
         double centerY = WINDOW_PADDING + ((ROOM_DIMENSION - IMAGE_DIMENSION) / 2)
                 + game.get_player().get_y_coord() * ROOM_DIMENSION;
 
-        imageView.setLayoutX(centerX);
-        imageView.setLayoutY(centerY);
+        playerImageView.setLayoutX(centerX);
+        playerImageView.setLayoutY(centerY);
+
+        /*
+         * il player è nella stessa posizione della guardia
+         */
+        if (checkGuardAndPlayer()) {
+            game.get_timer().decrement(WASTED_TIME);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attenzione");
+            alert.setHeaderText("La guardia ti ha trovato, hai perso " + String.valueOf(WASTED_TIME) + " secondi");
+            alert.show();
+        }
 
         if (updatePositionReg)
             game.updatePositionReg(game.get_player().get_x_coord(), game.get_player().get_y_coord());
 
+    }
+
+    /*
+     * metodo per visualizzare la gurdia sulla mappa
+     */
+    public void showGuard() {
+        /*
+         * va creata solo la prima volta
+         */
+        if (guardImageView == null) {
+            /*
+             * Carica l'immagine dalla cartella delle risorse
+             */
+            Image image = new Image(getClass().getResourceAsStream("img/guard.png"));
+            guardImageView = new ImageView(image);
+
+            /*
+             * Imposta le dimensioni desiderate dell'immagine
+             */
+            guardImageView.setFitWidth(IMAGE_DIMENSION);
+            guardImageView.setFitHeight(IMAGE_DIMENSION);
+
+            root.getChildren().add(guardImageView);
+
+        }
+
+        /*
+         * Calcola le coordinate per centrare l'immagine
+         */
+        double centerX = WINDOW_PADDING + ((ROOM_DIMENSION - IMAGE_DIMENSION) / 2)
+                + game.get_guard().get_x_coord() * ROOM_DIMENSION;
+        double centerY = WINDOW_PADDING + ((ROOM_DIMENSION - IMAGE_DIMENSION) / 2)
+                + game.get_guard().get_y_coord() * ROOM_DIMENSION;
+
+        guardImageView.setLayoutX(centerX);
+        guardImageView.setLayoutY(centerY);
+
+        /*
+         * il player è nella stessa posizione della guardia
+         */
+        if (checkGuardAndPlayer()) {
+            game.get_timer().decrement(WASTED_TIME);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attenzione");
+            alert.setHeaderText("La guardia ti ha trovato, hai perso " + String.valueOf(WASTED_TIME) + " secondi");
+            alert.show();
+        }
+
+    }
+
+    /*
+     * controllo se la guardia ha beccato il player
+     */
+    public boolean checkGuardAndPlayer() {
+        int p_x_coord = game.get_player().get_x_coord();
+        int p_y_coord = game.get_player().get_y_coord();
+        int g_x_coord = game.get_guard().get_x_coord();
+        int g_y_coord = game.get_guard().get_y_coord();
+
+        if (p_x_coord != g_x_coord)
+            return false;
+
+        if (p_y_coord != g_y_coord)
+            return false;
+
+        return true;
     }
 
     public boolean showConfirmationAlert() {

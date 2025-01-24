@@ -32,6 +32,7 @@ public class GameDeserializer extends JsonDeserializer<Game> {
         Player player = null;
         Guard guard = null;
         int currentProfit = 0;
+        int timeRemaining = 0;
 
         /*
          * Questa prima parte solo nel caso in cui non sto deserializzando la
@@ -142,6 +143,18 @@ public class GameDeserializer extends JsonDeserializer<Game> {
             parser.nextToken();
             parser.nextToken();
             parser.nextToken();
+
+            /*
+             * inizio oggetto timer
+             */
+            timeRemaining = parser.getValueAsInt();
+
+            parser.nextToken();
+            parser.nextToken();
+
+            /*
+             * current profit
+             */
 
             currentProfit = parser.getValueAsInt();
 
@@ -274,7 +287,7 @@ public class GameDeserializer extends JsonDeserializer<Game> {
         if (player == null) {
             return new Game(roomsList);
         } else {
-            return new Game(player, new Museum(roomsList), guard, currentProfit);
+            return new Game(player, new Museum(roomsList), guard, currentProfit, timeRemaining);
         }
     }
 

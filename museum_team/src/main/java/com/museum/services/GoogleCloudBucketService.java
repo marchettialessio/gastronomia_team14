@@ -22,7 +22,6 @@ import com.museum.data.Game;
 
 import static com.museum.config.Constants.*;
 
-
 /*
  * Classe con metodi statici per interfacciarsi a google cloud buckets
  */
@@ -168,45 +167,43 @@ public class GoogleCloudBucketService {
     /*
      * metodo per salvare un game in un blob
      */
-    public static void saveGame(String configurationName, Game game) {
-        try {
-            /*
-             * Autenticazione con Google Cloud
-             */
-            Storage storage = StorageOptions.newBuilder()
-                    .setCredentials(GoogleCredentials.fromStream(new FileInputStream(CREDENTIALS_PATH)))
-                    .build()
-                    .getService();
+    public static void saveGame(String configurationName, Game game) throws FileNotFoundException, IOException {
 
-            /*
-             * serializzo il game
-             */
-            JacksonService.serializeGame(game, SERIALIZE_PATH);
+        /*
+         * Autenticazione con Google Cloud
+         */
+        Storage storage = StorageOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(new FileInputStream(CREDENTIALS_PATH)))
+                .build()
+                .getService();
 
-            /*
-             * Leggi il contenuto del file locale
-             */
-            byte[] fileContent = Files.readAllBytes(Paths.get(SERIALIZE_PATH));
+        /*
+         * serializzo il game
+         */
+        JacksonService.serializeGame(game, SERIALIZE_PATH);
 
-            /*
-             * Carica il file come blob nel bucket
-             */
-            BlobId blobId = BlobId.of(BUCKET_NAME, configurationName + ".json");
-            BlobInfo blobInfo = BlobInfo.newBuilder(blobId).build();
+        /*
+         * Leggi il contenuto del file locale
+         */
+        byte[] fileContent = Files.readAllBytes(Paths.get(SERIALIZE_PATH));
 
-            storage.create(blobInfo, fileContent);
+        /*
+         * Carica il file come blob nel bucket
+         */
+        BlobId blobId = BlobId.of(BUCKET_NAME, configurationName + ".json");
+        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).build();
 
-            /*
-             * aggiorno la lista con le configurazioni disponibili
-             */
-            GoogleCloudBucketService.updateAvailableConfigurationList(configurationName);
+        storage.create(blobInfo, fileContent);
 
-            /*
-             * elimino il file temporaneo
-             */
-            Files.delete(Path.of(SERIALIZE_PATH));
+        /*
+         * aggiorno la lista con le configurazioni disponibili
+         */
+        GoogleCloudBucketService.updateAvailableConfigurationList(configurationName);
 
-        } catch (IOException e) {
-        }
+        /*
+         * elimino il file temporaneo
+         */
+        Files.delete(Path.of(SERIALIZE_PATH));
+
     }
 }

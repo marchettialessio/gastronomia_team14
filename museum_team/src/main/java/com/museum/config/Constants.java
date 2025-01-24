@@ -9,7 +9,22 @@ public class Constants {
     /*
      * Obbiettivo in denaro che il player deve raggiungere per vincere la partita
      */
-    public static final int WIN_GOAL = 0;//15000000;
+    public static final int WIN_GOAL = 12500000;
+
+    /*
+     * Tempo che passa per generare una nuova posizione della guardia
+     */
+    public static final int GUARD_TIME = 8;
+
+    /*
+     * Tempo massimo che il giocatore ha per vincere
+     */
+    public static final int PLAYER_TIME = 240;
+
+    /*
+     * Tempo rimosso quando la guardia ti trova
+     */
+    public static final int WASTED_TIME = 5;
 
     /*
      * Numero di righe della matrice contenente le stanze
@@ -39,7 +54,7 @@ public class Constants {
     /*
      * Uri del json con le credenziali di cloud buckets
      */
-    public static final String CREDENTIALS_PATH = "museumteam-credential.json";
+    public static final String CREDENTIALS_PATH = "";//museumteam-credential.json";
 
     /*
      * project-id su GCB

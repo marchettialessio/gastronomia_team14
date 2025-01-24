@@ -11,6 +11,7 @@ import com.museum.data.Guard;
 import com.museum.data.Museum;
 import com.museum.data.Player;
 import com.museum.data.Room;
+import com.museum.data.Timer;
 import com.museum.enumerator.DirectionType;
 
 import static com.museum.config.Constants.*;
@@ -27,6 +28,7 @@ public class GameSerializer extends JsonSerializer<Game> {
         Museum _museum = game.get_museum();
         Guard _guard = game.get_guard();
         int _currentProfit = game.get_currentProfit();
+        Timer _timer = game.get_timer();
 
         /*
          * inizio json
@@ -97,6 +99,12 @@ public class GameSerializer extends JsonSerializer<Game> {
          * fine oggetto guardia
          */
         gen.writeEndObject();
+
+        /*
+         * timer
+         */
+        gen.writeFieldName("timeRemaining");
+        gen.writeNumber(_timer.getTimeRemaining());
 
         /*
          * current profit
