@@ -54,7 +54,7 @@ public class Constants {
     /*
      * Uri del json con le credenziali di cloud buckets
      */
-    public static final String CREDENTIALS_PATH = "";//museumteam-credential.json";
+    public static final String CREDENTIALS_PATH = "museumteam-credential.json";
 
     /*
      * project-id su GCB
@@ -69,7 +69,7 @@ public class Constants {
     /*
      * nome del blob che lista le configurazioni salvate
      */
-    public static final String BLOB_AVAILABLE_CONFIGURATION = "available-configuration2.txt";
+    public static final String BLOB_AVAILABLE_CONFIGURATION = "available-configuration.txt";
 
     /*
      * path in cui scaricare i file di configurazioni
