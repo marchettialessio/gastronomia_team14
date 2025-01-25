@@ -1,63 +1,60 @@
-
-@startuml prova
-
-left to right direction
-object Giocatore
-object Configurazione
-
-object Blocco{
-  dimensione
-  posizione
+@startuml
+class Game {
+    - winCondition: double
+    + checkWinCondition(): boolean
+    + start(): void
+    + updateGuardPositions(): void
+}
+class Player {
+    + move(direction: String): void
+    + viewMap(): void
+    + viewRoomArtefacts(): void
+    + viewRequiredTools(): void
+    + depositArtefacts(): void
+    + checkTime(): void
+    + escapeGuard(): boolean
+}
+class Room {
+    - name: String
+    + getConnectedRoom(direction: String): Room
+}
+class Guard{
+    - currentRoom: Room
+    + moveRandomly(): void
+}
+class Museum{
+    + getRoomByName(name: String): Room
+}
+class Tool{
+    - name: String
+}
+class Artwork{
+    - name: String
+    - value: double
+    - type: String
+    + canBeStolen(tool: String): boolean
+}
+class Timer{
+}
+class Backpack{
+    - weight: Integer
 }
 
-object Gioco
-object StoricoConfigurazioni
-object NBM_Script
-object NBM
-object Reset
-object Undo
-object ConfigurazioneIniziale
-object ConfigurazioneCorrente
-object ContatoreMosse
-object Vittoria
+Game "1" *-- "1" Player
+Game "1" *-- "1" Museum
+Game "1" *-- "1" Guard
+Game "1" *-- "1" Timer
+Player "1" --> "1" Backpack : owns
+Player "1" --> "0..1" Tool : uses
+Player "1" --> "0..*" Artwork : steals
+Player "0..1" -- "1" Room
+Artwork "*" --* "1" Room : contains
+Artwork "*" --> "1" Tool : requests
+Artwork "0..*" <-- "1" Backpack : contains
+Room --> Room : connected to 
+Room "1" <-- "0..1" Guard : patrols
+Room "12" --* "1" Museum : is composed by
 
-Giocatore "1" --> "1" ConfigurazioneIniziale : Sceglie
 
-ConfigurazioneIniziale "1" --> "1" Configurazione : E'
-
-Giocatore "1" --> "1" ConfigurazioneCorrente : Visualizza
-
-ConfigurazioneCorrente "1" --> "1" Configurazione : E'
-
-Giocatore "1" --> "1" Blocco : Muove
-
-Configurazione "1" *-right- "10" Blocco : \nContiene\n
-
-StoricoConfigurazioni "1" *-right- "1..n" Configurazione : \nContiene\n
-
-StoricoConfigurazioni "1" -left-* "1" Gioco : \nContiene\n
-
-NBM_Script "1" -right-> "1" NBM : \nFornisce\n
-
-Giocatore "1" -right-> "1" Reset : Richiede
-
-Giocatore "1" -left-> "1" Vittoria : Visualizza
-
-Gioco "1" --> "1" Vittoria : Segnala
-
-Giocatore "1" --> "0.." Undo : Richiede
-
-Giocatore "1" --> "1" NBM : Richiede
-
-NBM "1" -right-> "1" Gioco : Modifica
-
-Giocatore "1" --> "1" ContatoreMosse : Visualizza
-
-ContatoreMosse "1" -down-* "1" Gioco : Contiene
-
-Reset "1" -right-> "1" Gioco : Modifica
-
-Undo "1" --> "1" Gioco : Modifica
 
 @enduml
-
