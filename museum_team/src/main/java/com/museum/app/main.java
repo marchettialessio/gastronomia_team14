@@ -13,9 +13,8 @@ import java.net.URISyntaxException;
 
 /**
  * JavaFX App
- * 
  */
-public class Main extends Application {
+public class main extends Application {
 
     private static Scene scene;
 
@@ -28,7 +27,7 @@ public class Main extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
+        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource(fxml));
         return fxmlLoader.load();
     }
 
