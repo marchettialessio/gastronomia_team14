@@ -1,43 +1,28 @@
 @startuml
-class Game {
-    - winCondition: double
-    + checkWinCondition(): boolean
-    + start(): void
-    + updateGuardPositions(): void
+object Game {
+    winCondition
 }
-class Player {
-    + move(direction: String): void
-    + viewMap(): void
-    + viewRoomArtefacts(): void
-    + viewRequiredTools(): void
-    + depositArtefacts(): void
-    + checkTime(): void
-    + escapeGuard(): boolean
+object Player {
 }
-class Room {
-    - name: String
-    + getConnectedRoom(direction: String): Room
+object Room {
+    name
 }
-class Guard{
-    - currentRoom: Room
-    + moveRandomly(): void
+object Guard{
 }
-class Museum{
-    + getRoomByName(name: String): Room
+object Museum{
 }
-class Tool{
-    - name: String
+object Tool{
+     name
 }
-class Artwork{
-    - name: String
-    - value: double
-    - type: String
-    + canBeStolen(tool: String): boolean
+object Artwork{
+     name
+     value
+     type
 }
-class Timer{
+object Timer{
 }
-class Backpack{
-    - weight: Integer
+object Backpack{
+     weight
 }
 
 Game "1" *-- "1" Player
