@@ -74,9 +74,6 @@ public class Controller {
      */
     @FXML
     public void initialize() {
-        if (playerImageView != null)
-            root.getChildren().remove(playerImageView);
-        playerImageView = null;
 
         /*
          * carico il game corretto
@@ -344,6 +341,8 @@ public class Controller {
                     break;
                 case "load":
                     setConfiguration(true);
+                    showPlayer(false);
+                    showGuard();
                     break;
                 case "take partial profit":
 

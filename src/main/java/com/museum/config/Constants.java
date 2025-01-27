@@ -19,7 +19,7 @@ public class Constants {
     /*
      * Tempo massimo che il giocatore ha per vincere
      */
-    public static final int PLAYER_TIME = 240;
+    public static final int PLAYER_TIME = 270;
 
     /*
      * Tempo rimosso quando la guardia ti trova
