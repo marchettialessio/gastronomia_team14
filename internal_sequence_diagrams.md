@@ -17,13 +17,13 @@ actor Player
 participant Controller
 participant Game
 
-Player -> Game: move(direction)
-Game --> Controller: movePlayer(direction)
-Controller -> Game : showPlayer(updatePosition)
-Game --> Game : calculate coordinates (centerX, centerY)
-Game --> Game : setLayoutX(centerX)
-Game --> Game : setLayoutY(centerY)
-Game --> Controller : checkGuardAndPlayer()
+Player -> Controller: move(direction)
+Controller --> Controller: movePlayer(direction)
+Controller --> Controller : showPlayer(updatePosition)
+Controller --> Controller : calculate coordinates (centerX, centerY)
+Controller --> Controller : setLayoutX(centerX)
+Controller --> Controller : setLayoutY(centerY)
+Controller --> Controller : checkGuardAndPlayer()
 alt Guard and Player in same position
     Controller -> Game : game.get_timer().decrement(WASTED_TIME)
     Game --> Player: alert "La guardia ti ha trovato, hai perso 5 secondi"
@@ -31,7 +31,7 @@ end
 alt updatePosition is true
     Controller -> Game : game.updatePosition(player.get_x_coord(), player.get_y_coord())
 end
-Game --> Player: showUpdatedImage()
+Controller --> Player: showUpdatedImage()
 
 @enduml
 
@@ -54,23 +54,23 @@ skinparam altBorderColor #512da8
 
 
 actor Player
-participant Game
 participant Controller
+participant Timer
+participant Game
 
 
 alt timer ran out
-Controller -> Game: timerFinished()
-activate Controller
-Game --> Player: alert "Hai perso. Il tempo è scaduto"
-Game --> Player: alert "Vuoi chiudere l'applicazione(sì) o continuare (no)?"
-Controller --> Game: setDecisionButtons()
-alt sì
-    Controller --> Game: closeGame()
-    Game --> Player: exitGame()
+Controller -> Timer: timerFinished()
+Controller --> Player: alert "Hai perso. Il tempo è scaduto"
+Controller --> Player: alert "Vuoi chiudere l'applicazione(sì) o continuare (no)?"
+Controller -> Game: setDecisionButtons()
+Game --> Player: showDecisionButtons()
+alt yes
+    Controller -> Game: closeGame()
+    Controller --> Player: exitGame()
 else no
-    Controller --> Game: initializeGame()
-    Game --> Player: newGame()
-    deactivate Controller
+    Controller -> Game: initializeGame()
+    Controller --> Player: newGame()
 end
 
 
@@ -81,7 +81,7 @@ end
 
 @startuml
 
-title setConfiguration(isFromLoadCommand)
+title timerFinished()
 
 skinparam backgroundColor #f9f9f9
 skinparam participantBackgroundColor #e0f7fa
@@ -94,39 +94,35 @@ skinparam criticalBorderColor #b71c1c
 skinparam altBackgroundColor #d1c4e9
 skinparam altBorderColor #512da8
 
+
 actor Player
-participant Game
 participant Controller
 participant Timer
-participant CloudHandler
-participant JacksonService
+participant Game
 
-Player -> Controller: load() OR initialize()
-alt game != null
-    Controller --> Game : stopTimer()
+
+alt timer ran out
+Controller -> Timer: timerFinished()
+Controller --> Player: alert "Hai perso. Il tempo è scaduto"
+Controller --> Player: alert "Vuoi chiudere l'applicazione(sì) o continuare (no)?"
+Controller -> Game: setDecisionButtons()
+Game --> Player: showDecisionButtons()
+alt yes
+    Controller -> Game: closeGame()
+    Controller --> Player: exitGame()
+else no
+    Controller -> Game: initializeGame()
+    Controller --> Player: newGame()
 end
-Controller -> CloudHandler : getAvailableConfigurationList()
-alt availableConfiguration is null or empty
-    Controller --> Player: alert "Non hai configurazioni salvate"
-    Controller -> JacksonService : deserializeGame(JSON_CONFIGURATION_PATH)
-    Game -> Game : setGame()
+
+
 end
-alt availableConfiguration is not null and not empty
-    Controller --> Player : loadNewConfiguration = showConfirmationAlert()
-    alt loadNewConfiguration is true OR isFromLoadCommand is true
-        Controller -> CloudHandler : loadGame(selectedConfiguration)
-        Game -> Game : setGame()
-    else
-        Controller -> JacksonService : deserializeGame(JSON_CONFIGURATION_PATH)
-        Game -> Game : setGame()
-    end
-end
-Controller -> Timer : startTimer()
-Controller --> Player: startGame()
 @enduml
 
 
 @startuml
+
+title initialize()
 
 skinparam backgroundColor #f9f9f9
 skinparam participantBackgroundColor #e0f7fa
@@ -149,7 +145,7 @@ alt playerImageView != null
     Controller --> Controller : playerImageView = null
 end
 Controller -> Game: setConfiguration(false)
-Controller -> Game: showPlayer(true)
-Controller -> Game: showGuard()
-Game --> Player: startGame()
+Controller --> Player: showPlayer(true)
+Controller --> Player: showGuard()
+Controller --> Player: startGame()
 @enduml
