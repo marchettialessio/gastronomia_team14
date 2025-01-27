@@ -12,4 +12,4 @@ COMANDI DISPONIBILI:
 ANNOTAZIONI:
 -quando player prende un nuovo stealingTool lascia quello corrente nella stanza in cui è
 
--pattern singlenton usato su controller
+-pattern singleton usato su controller
