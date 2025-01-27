@@ -2,4 +2,6 @@
 
 museumteam-credential.json
 
-
+target/reports/
+target/surefire-reports/
+target/site/
