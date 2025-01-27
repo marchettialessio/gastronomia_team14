@@ -124,3 +124,32 @@ end
 Controller -> Timer : startTimer()
 Controller --> Player: startGame()
 @enduml
+
+
+@startuml
+
+skinparam backgroundColor #f9f9f9
+skinparam participantBackgroundColor #e0f7fa
+skinparam participantBorderColor #00796b
+skinparam sequenceArrowColor #00796b
+skinparam sequenceBoxBackgroundColor #b2dfdb
+skinparam sequenceBoxBorderColor #004d40
+skinparam criticalBackgroundColor #ffcdd2
+skinparam criticalBorderColor #b71c1c
+skinparam altBackgroundColor #d1c4e9
+skinparam altBorderColor #512da8
+
+actor Player
+participant Controller
+participant Game
+
+Player -> Controller : initialize()
+alt playerImageView != null
+    Controller --> Controller : remove(playerImageView)
+    Controller --> Controller : playerImageView = null
+end
+Controller -> Game: setConfiguration(false)
+Controller -> Game: showPlayer(true)
+Controller -> Game: showGuard()
+Game --> Player: startGame()
+@enduml
