@@ -66,6 +66,7 @@ public class GoogleCloudBucketService {
             return lines;
 
         } catch (IOException e) {
+            System.out.println(e);
             return null;
         }
     }
