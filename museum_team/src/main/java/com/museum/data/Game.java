@@ -73,7 +73,7 @@ public class Game {
     /*
      * metodo per generare la guardia in una posizione
      */
-    public Guard GenerateRandomGuardPosition() {
+    private Guard GenerateRandomGuardPosition() {
         Random random = new Random();
         int x_coord = random.nextInt(2);
         int y_coord = random.nextInt(3);

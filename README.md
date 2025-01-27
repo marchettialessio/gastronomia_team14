@@ -13,3 +13,5 @@ ANNOTAZIONI:
 -quando player prende un nuovo stealingTool lascia quello corrente nella stanza in cui è
 
 -pattern singleton usato su controller
+
+-scrivere su manuale tipi di opera e tipi di strumento

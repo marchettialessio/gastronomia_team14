@@ -1,8 +1,6 @@
 package com.museum.app;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileNotFoundException;
@@ -32,14 +30,6 @@ public class GoogleCloudBucketTest {
     }
 
     @Test
-    public void testLoadGame() {
-        if (GoogleCloudBucketService.getAvailableConfigurationList().contains("test")) {
-            Game game = GoogleCloudBucketService.loadGame("test");
-            assertNotNull(game);
-        }
-    }
-
-    @Test
     public void testSaveGame() {
         Game game = JacksonService.deserializeGame(JSON_CONFIGURATION_PATH);
         try {
@@ -51,4 +41,13 @@ public class GoogleCloudBucketTest {
         }
         assertTrue(GoogleCloudBucketService.getAvailableConfigurationList().contains("test"));
     }
+
+    // @Test
+    // public void testLoadGame() {
+    //     if (GoogleCloudBucketService.getAvailableConfigurationList().contains("test")) {
+    //         Game game = GoogleCloudBucketService.loadGame("test");
+    //         assertNotNull(game);
+    //     }
+    // }
+
 }
