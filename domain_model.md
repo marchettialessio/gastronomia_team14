@@ -1,3 +1,6 @@
+![Domain model](images/domain_model.png)
+
+```uml
 @startuml
 object Game {
     winCondition
