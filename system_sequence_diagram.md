@@ -1,3 +1,7 @@
+![System sequence diagram](images/system_sequence_diagram.png)
+
+```uml
+
 @startuml
 skinparam backgroundColor #f9f9f9
 skinparam participantBackgroundColor #e0f7fa
