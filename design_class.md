@@ -1,3 +1,8 @@
+![Design class](images/design_class_model.png)
+
+```uml
+
+
 @startuml
 class JacksonService{
     + void serializeGame(Game, String)
