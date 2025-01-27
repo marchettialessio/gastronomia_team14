@@ -1,5 +1,5 @@
 ![Internal sequence diagram](images/internal_sequence_diagram_1.png)
-'''uml
+```uml
 
 @startuml
 
@@ -21,7 +21,7 @@ participant Controller
 participant Game
 
 Player -> Controller: move(direction)
-Controller --> Controller: movePlayer(direction)
+Controller --> Controller : movePlayer(direction)
 Controller --> Controller : showPlayer(updatePosition)
 Controller --> Controller : calculate coordinates (centerX, centerY)
 Controller --> Controller : setLayoutX(centerX)
@@ -37,11 +37,10 @@ end
 Controller --> Player: showUpdatedImage()
 
 @enduml
-
+```
 
 ![Internal sequence diagram](images/internal_sequence_diagram_2.png)
-'''uml
-
+```uml
 
 @startuml
 
@@ -82,15 +81,15 @@ end
 
 end
 @enduml
+```
 
-
+##
 ![Internal sequence diagram](images/internal_sequence_diagram_3.png)
-'''uml
-
+```uml
 
 @startuml
 
-title timerFinished()
+title setConfiguration(isFromLoadCommand)
 
 skinparam backgroundColor #f9f9f9
 skinparam participantBackgroundColor #e0f7fa
@@ -103,35 +102,40 @@ skinparam criticalBorderColor #b71c1c
 skinparam altBackgroundColor #d1c4e9
 skinparam altBorderColor #512da8
 
-
 actor Player
+participant Game
 participant Controller
 participant Timer
-participant Game
+participant CloudHandler
+participant JacksonService
 
-
-alt timer ran out
-Controller -> Timer: timerFinished()
-Controller --> Player: alert "Hai perso. Il tempo è scaduto"
-Controller --> Player: alert "Vuoi chiudere l'applicazione(sì) o continuare (no)?"
-Controller -> Game: setDecisionButtons()
-Game --> Player: showDecisionButtons()
-alt yes
-    Controller -> Game: closeGame()
-    Controller --> Player: exitGame()
-else no
-    Controller -> Game: initializeGame()
-    Controller --> Player: newGame()
+Player -> Controller: load() OR initialize()
+alt game != null
+    Controller -> Timer : stopTimer()
 end
-
-
+Controller -> CloudHandler : getAvailableConfigurationList()
+alt availableConfiguration is null or empty
+    Controller --> Player: alert "Non hai configurazioni salvate"
+    Controller -> JacksonService : deserializeGame(JSON_CONFIGURATION_PATH)
+    Game --> Game : setGame()
 end
+alt availableConfiguration is not null and not empty
+    Controller --> Player : loadNewConfiguration = showConfirmationAlert()
+    alt loadNewConfiguration is true OR isFromLoadCommand is true
+        Controller -> CloudHandler : loadGame(selectedConfiguration)
+        Game --> Game : setGame()
+    else
+        Controller -> JacksonService : deserializeGame(JSON_CONFIGURATION_PATH)
+        Game --> Game : setGame()
+    end
+end
+Controller -> Timer : startTimer()
+Controller --> Player: startGame()
 @enduml
-
+```
 
 ![Internal sequence diagram](images/internal_sequence_diagram_4.png)
-'''uml
-
+```uml
 
 @startuml
 
@@ -162,3 +166,4 @@ Controller --> Player: showPlayer(true)
 Controller --> Player: showGuard()
 Controller --> Player: startGame()
 @enduml
+```
