@@ -2,7 +2,7 @@
 ## Authors
 
 - **Federico Cosma** 
-- **Marchetti Alessio**
+- **Alessio Marchetti**
 - **Edoardo Cavaliere**
 - **Sirio Trentin**
 
