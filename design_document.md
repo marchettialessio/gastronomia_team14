@@ -1,7 +1,7 @@
 **Domain Model**
 
 
-![Domain Model](images/domain_model.png)
+![Domain Model](design_documents/images/domain_model.png)
 
 
 
@@ -9,7 +9,7 @@
 **System Sequence Diagram**
 
 
-![Domain Model](images/system_sequence_diagram.png)
+![Domain Model](design_documents/images/system_sequence_diagram.png)
 
 
 
@@ -18,7 +18,7 @@
 **Design Class Model**
 
 
-![Domain Model](images/design_class_model.png)
+![Domain Model](design_documents/images/design_class_model.png)
 
 
 
@@ -29,18 +29,18 @@
 
 *move(direction)*
 
-![Domain Model](images/internal_sequence_diagram_1.png)
+![Domain Model](design_documents/images/internal_sequence_diagram_1.png)
 
 *timerFinished()*
 
-![Domain Model](images/internal_sequence_diagram_2.png)
+![Domain Model](design_documents/images/internal_sequence_diagram_2.png)
 
 *setConfiguration(isFromLoadCommand)*
 
-![Domain Model](images/internal_sequence_diagram_3.png)
+![Domain Model](design_documents/images/internal_sequence_diagram_3.png)
 
 *initialize()*
 
-![Domain Model](images/internal_sequence_diagram_4.png)
+![Domain Model](design_documents/images/internal_sequence_diagram_4.png)
 
   
